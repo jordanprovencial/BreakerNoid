@@ -18,6 +18,27 @@ namespace BreakernoidsGL
         protected Game game;
         public Vector2 position = Vector2.Zero;
 
+        public float Width
+        {
+            get { return texture.Width; }
+        }
+
+        public float Height
+        {
+            get { return texture.Height; }
+        }
+
+        public Rectangle BoundingRect
+        {
+            get
+            {
+                return new Rectangle((int)(position.X - Width / 2),
+                    (int)(position.Y + Height / 2),
+                    (int)Width,
+                    (int)Height);
+            }
+        }
+
         public GameObject(Game myGame)
         {
             game = myGame;
@@ -25,10 +46,9 @@ namespace BreakernoidsGL
         public virtual void LoadContent()
         {
             if (textureName != "")
-            {
-                texture = game.Content.Load(textureName);
+            
+                texture = game.Content.Load<Texture2D>(textureName);
             }
-        }
         public virtual void Update(float deltaTime)
         {
 
@@ -44,4 +64,8 @@ namespace BreakernoidsGL
             }
         }
     }
+
 }
+   
+
+

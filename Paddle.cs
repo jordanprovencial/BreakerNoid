@@ -20,6 +20,7 @@ namespace BreakernoidsGL
             textureName = "Paddle";
         }
         public override void Update(float deltaTime)
+            
         {
             // Paddle movement
             KeyboardState keyState = Keyboard.GetState();
@@ -31,7 +32,17 @@ namespace BreakernoidsGL
             {
                 position.X += speed * deltaTime;
             }
+            position.X = MathHelper.Clamp(position.X, 32 + texture.Width / 2, 992 - texture.Width / 2);
+
             base.Update(deltaTime);
+        }
+        public void ChangeTexture(string name)
+        {
+            if (name != textureName)
+            {
+                textureName = name;
+                texture = game.Content.Load<Texture2D>(textureName);
+            }
         }
 
     }
